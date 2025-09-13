@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Mental Health Wellness App</title>
+<style>
+  /* Responsive styles */
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0; padding: 0;
+    background: #f9f9f9;
+    display: flex; flex-direction: column; align-items: center;
+    min-height: 100vh;
+  }
+  header {
+    background: #4a90e2;
+    color: white;
+    padding: 1rem;
+    width: 100%;
+    text-align: center;
+  }
+  main {
+    flex: 1;
+    max-width: 600px;
+    width: 90%;
+    background: white;
+    margin: 1rem 0;
+    padding: 1rem 2rem;
+    box-shadow: 0 0 10px #ccc;
+    border-radius: 8px;
+  }
+  label {
+    display: block;
+    margin: 1rem 0 0.5rem;
+  }
+  select, textarea {
+    width: 100%;
+    padding: 0.5rem;
+    font-size: 1rem;
+  }
+  button {
+    margin-top: 1rem;
+    padding: 0.7rem 1.5rem;
+    font-size: 1rem;
+    background: #4a90e2;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  button:hover {
+    background: #357ABD;
+  }
+  .recommendations {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background: #e3f2fd;
+    border-radius: 6px;
+  }
+  canvas {
+    margin-top: 2rem;
+  }
+  footer {
+    padding: 1rem;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #666;
+  }
+  @media (max-width: 600px) {
+    main {
+      padding: 1rem;
+    }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Daily Mood Wellness Tracker</h1>
+</header>
+
+<main>
+  <form id="moodForm">
+    <label for="mood">How do you feel today?</label>
+    <select id="mood" name="mood" required>
+      <option value="">-- Select Mood --</option>
+      <option value="happy">😊 Happy</option>
+      <option value="sad">😢 Sad</option>
+      <option value="anxious">😰 Anxious</option>
+      <option value="angry">😠 Angry</option>
+      <option value="neutral">😐 Neutral</option>
+      <option value="excited">🤩 Excited</option>
+      <option value="tired">😴 Tired</option>
+    </select>
+
+    <label for="notes">Optional: Share more about your mood</label>
+    <textarea id="notes" name="notes" rows="3" placeholder="Write your thoughts here..."></textarea>
+
+    <button type="submit">Submit Mood</button>
+  </form>
+
+  <div class="recommendations" id="recommendations" style="display:none;"></div>
+
+  <canvas id="moodChart" width="400" height="200"></canvas>
+</main>
+
+<footer>
+  &copy; 2025 Mental Health Wellness App
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  // App logic
+
+  const form = document.getElementById('moodForm');
+  const recommendationsDiv = document.getElementById('recommendations')
